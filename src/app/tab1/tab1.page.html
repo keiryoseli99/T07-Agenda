@@ -1,17 +1,60 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
       Tab 1
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
+ -->
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label>Fecha</ion-label>
+        <ion-text *ngIf="dateValue">{{ dateValue }}</ion-text>
+        <ion-button slot="end" id="open-date-input">
+          <ion-icon icon="calendar-outline"></ion-icon>
+        </ion-button>
+        <ion-popover trigger="open-date-input" show-backdrop="false">
+          <ng-template>
+            <ion-datetime
+              #popoverDatetime
+              presentation="date"
+              [value]="dateValue2"
+              (ionChange)="dateValue = formatDate(popoverDatetime.value)"
+              [(ngModel)]="fecha">
+              <ion-buttons slot="buttons">
+                <ion-button (click)="confirm()">Aceptar</ion-button>
+                <ion-button (click)="reset()">Restaurar</ion-button>
+              </ion-buttons>
+            </ion-datetime>
+          </ng-template>
+        </ion-popover>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Nombre Persona</ion-label>
+        <ion-input [(ngModel)]="nombre"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label posotion="floating">Tipo</ion-label>
+        <ion-select [(ngModel)]="tipo">
+          <ion-select-option value="Boda">Boda</ion-select-option>
+          <ion-select-option value="Bautismo">Bautismo</ion-select-option>
+          <ion-select-option value="Cumpleaños">Cumpleaños</ion-select-option>
+          <ion-select-option value="Quinciañera">Quinciañera</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Celular</ion-label>
+        <ion-input [(ngModel)]="celular"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-button expand="block" (click)="add()" *ngIf="celular">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </ion-col>
+  </ion-row>
 </ion-content>

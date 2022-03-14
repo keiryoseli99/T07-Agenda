@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AgendaService } from '../services/agenda.service'
+import { citas } from '../services/citas';
 
 @Component({
   selector: 'app-tab2',
@@ -7,6 +9,11 @@ import { Component } from '@angular/core';
 })
 export class Tab2Page {
 
-  constructor() {}
+  constructor(
+    private agenda: AgendaService
+  ) {}
 
+  public lista: citas[] = this.agenda.getListaCitas();
+  
+  
 }

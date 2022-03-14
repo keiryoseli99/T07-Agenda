@@ -1,17 +1,39 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
       Tab 2
     </ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-infinite-scroll>
+    <ion-infinite-scroll-content>
+      <ion-list *ngIf="lista.length>0">
+        <ion-card *ngFor="let item of lista; let i = index">
+          <ion-card-content>
+            <ion-item>
+              <ion-label>Fecha: {{item.fecha}}</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>Nombre: {{item.nombre}}</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>Tipo: </ion-label>
+              <ion-badge color="primary">{{item.tipo}}</ion-badge>
+            </ion-item>
+            <ion-item>
+              <ion-label>Cel: {{item.celular}}</ion-label>
+              <ion-button href="https://wa.me/521{{item.celular}}">
+                <ion-icon name="logo-whatsapp"></ion-icon>
+              </ion-button>
+              <ion-button href="tel:{{item.celular}}"> 
+                <ion-icon name="call-outline"></ion-icon>
+              </ion-button>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+      </ion-list>
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
