@@ -31,7 +31,8 @@ export class Tab1Page {
     this.fecha = '';
     this.nombre = '';
     this.tipo = '';
-    this.celular = '';
+    this.celular = ''
+    this.dateValue = '';
   }
 
   private confirm() {

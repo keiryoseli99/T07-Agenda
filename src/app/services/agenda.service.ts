@@ -12,7 +12,7 @@ export class AgendaService {
   constructor() {
   }
 
-  addCitaNueva(fecha:string, nombre:string, tipo:string, celular:string){
+  public addCitaNueva(fecha:string, nombre:string, tipo:string, celular:string){
     let cita: citas = new citas(fecha,nombre,tipo,celular);
     cita.setId(this.index);
     this.index++;
@@ -22,7 +22,13 @@ export class AgendaService {
     console.log(this.listaCitas);
   }
 
-  getListaCitas(){
+  public getListaCitas(){
     return this.listaCitas;
+  }
+
+  public removeCitas(pos:number){
+    this.listaCitas.splice(pos,1);
+    
+    console.log(this.listaCitas);
   }
 }

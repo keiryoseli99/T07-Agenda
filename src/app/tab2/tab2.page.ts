@@ -9,11 +9,19 @@ import { citas } from '../services/citas';
 })
 export class Tab2Page {
 
+  public lista: citas[];
+
   constructor(
     private agenda: AgendaService
-  ) {}
+  ) {
+    this.lista = this.agenda.getListaCitas();
+  }
 
-  public lista: citas[] = this.agenda.getListaCitas();
-  
+  //public lista: citas[] = this.agenda.getListaCitas();
+
+  private remove(pos:number) {
+    this.agenda.removeCitas(pos);
+    this.lista = this.agenda.getListaCitas();
+  }
   
 }
